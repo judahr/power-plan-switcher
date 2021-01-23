@@ -40,7 +40,9 @@ namespace PlanSwitcher
             if (currentDirectory != startupDirectory)
             {                
                 string executableName = System.IO.Path.GetFileName(executablePath);
-                System.IO.File.Copy(executablePath, startupDirectory + "/" + executableName, true);
+#if !DEBUG
+            System.IO.File.Copy(executablePath, startupDirectory + "/" + executableName, true);
+#endif
             }
         }
     }

@@ -40,7 +40,7 @@ namespace PlanSwitcher
             refreshTimer = new System.Windows.Forms.Timer(components);
             refreshTimer.Interval = TimerInterval;
             refreshTimer.Tick += new System.EventHandler(TimerHandler);
-            refreshTimer.Enabled = true;
+            //refreshTimer.Enabled = true;
 
             powerManager = PowerManagerProvider.CreatePowerManager(this);
             plans = powerManager.GetPlans();
@@ -149,8 +149,8 @@ namespace PlanSwitcher
                     ((ToolStripMenuItem) item).Checked = false;
                 }
             }
-
-            ((ToolStripMenuItem) notifyIcon.ContextMenuStrip.Items[idx]).Checked = true;
+            if (idx > -1)
+                ((ToolStripMenuItem) notifyIcon.ContextMenuStrip.Items[idx]).Checked = true;
         }
 
         private void OpenControlPanelClick(object sender, EventArgs e)

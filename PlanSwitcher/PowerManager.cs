@@ -142,7 +142,15 @@ namespace PlanSwitcher
         public PowerPlan GetCurrentPlan()
         {          
             Guid guid = GetActiveGuid();
-            return GetPlans().Find(p => (p.guid == guid));
+            PowerPlan pp =  GetPlans().Find(p => (p.guid == guid));
+
+            if (pp == null)
+            {
+                string name = GetPowerPlanName(guid);
+                return new PowerPlan(name, guid);
+            }
+
+            return pp;
         }
 
         private void PowerModeChangedHandler(object sender, EventArgs e) 
